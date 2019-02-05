@@ -108,15 +108,21 @@ score =>
   | Points(p) => string_of_player(PlayerOne) 
     ++ " : " 
     ++ string_of_point(p.playerOne)
-    ++ " | "
-    ++ string_of_player(PlayerTwo) 
-    ++ " : " 
+    ++ " - "
     ++ string_of_point(p.playerTwo)
-  | Forty(f) => string_of_player(f.player) 
-    ++ " : 40 | " 
-    ++ string_of_player(other(f.player)) 
-    ++ " : " 
+    ++ " : "
+    ++ string_of_player(PlayerTwo) 
+  | Forty(f) => f.player == PlayerOne ?  
+    string_of_player(PlayerOne) 
+    ++ " : 40 - "
     ++ string_of_point(f.otherPlayerPoint)
+    ++ " : "
+    ++ string_of_player(PlayerTwo):
+    string_of_player(PlayerOne) 
+    ++ " : "
+    ++ string_of_point(f.otherPlayerPoint)
+    ++ " - 40 : "
+    ++ string_of_player(PlayerTwo)
   | Deuce => "Deuce"
   | Advantage(a) => "Advantage for " ++ string_of_player(a)
   | Game(g) => "Game for " ++ string_of_player(g)
